@@ -165,9 +165,9 @@ async function handleCreate(event) {
       description: document.querySelector("#description").value.trim(),
       category: document.querySelector("#category_input").value.trim(),
       venue: document.querySelector("#venue").value.trim(),
-      starts_at: toDateTimeISO(startsVal, "09:00"),
-      ends_at: toDateTimeISO(endsVal, "12:00"),
-      registration_deadline: toDateTimeISO(deadlineVal, "17:00"),
+      starts_at: toDateTimeISO(startsVal, "10:00"),
+      ends_at: toDateTimeISO(endsVal, "13:00"),
+      registration_deadline: toDateTimeISO(deadlineVal, "08:00"),
       capacity: Number(document.querySelector("#capacity").value),
       certificate_minimum_minutes: Number(document.querySelector("#certificate_minimum_minutes").value),
     };

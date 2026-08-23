@@ -1,8 +1,9 @@
 var API = window.API || "http://127.0.0.1:8000";
 
-let currentDate = new Date(2026, 7, 1); // August 2026
+let currentDate = new Date();
 let allEvents = [];
 let userRegMap = new Map();
+
 
 const monthNames = [
   "January", "February", "March", "April", "May", "June",
