@@ -309,6 +309,18 @@ if (categoryInput) {
 const seedBtn = document.querySelector("#seed-samples");
 if (seedBtn) seedBtn.addEventListener("click", seedSampleEvents);
 
+const autofillBtn = document.querySelector("#autofill-event");
+if (autofillBtn) {
+  autofillBtn.addEventListener("click", () => {
+    document.querySelector("#title").value = "AI & Quantum Computing Workshop";
+    document.querySelector("#category_input").value = "Workshop";
+    document.querySelector("#venue").value = "Auditorium Hall A";
+    document.querySelector("#capacity").value = "75";
+    document.querySelector("#certificate_minimum_minutes").value = "60";
+    document.querySelector("#description").value = "An immersive hands-on workshop exploring artificial intelligence concepts, machine learning algorithms, and quantum computing fundamentals.";
+  });
+}
+
 const eventForm = document.querySelector("#event-form");
 if (eventForm) eventForm.addEventListener("submit", handleCreate);
 
