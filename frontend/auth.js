@@ -1,7 +1,7 @@
 window.API = window.EVENTPULSE_API_URL || localStorage.getItem("EVENTPULSE_API_URL") || (
   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://127.0.0.1:8000"
-    : "https://c42920ad70b146f1-103-49-255-175.serveousercontent.com"
+    : window.location.origin
 );
 var API = window.API;
 
