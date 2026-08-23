@@ -1,9 +1,24 @@
-window.API = window.EVENTPULSE_API_URL || (
+window.API = window.EVENTPULSE_API_URL || localStorage.getItem("EVENTPULSE_API_URL") || (
   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://127.0.0.1:8000"
-    : "https://eventpulse-api.onrender.com"
+    : "https://ninety-ducks-doubt.loca.lt"
 );
 var API = window.API;
+
+const originalFetch = window.fetch;
+window.fetch = function(url, options = {}) {
+  options = options || {};
+  options.headers = options.headers || {};
+  if (typeof url === 'string' && url.includes('loca.lt')) {
+    if (options.headers instanceof Headers) {
+      options.headers.set('bypass-tunnel-reminder', 'true');
+    } else {
+      options.headers['bypass-tunnel-reminder'] = 'true';
+    }
+  }
+  return originalFetch(url, options);
+};
+
 const AUTH_STORAGE_KEY = "eventpulse_user";
 
 function getCurrentUser() {
