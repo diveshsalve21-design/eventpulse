@@ -18,6 +18,11 @@ function getPillClass(category) {
   return "pill-default";
 }
 
+function formatTime(isoString) {
+  const d = new Date(isoString);
+  return d.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+}
+
 async function fetchCalendarData() {
   const currentUser = getCurrentUser();
   const [eventsRes, userRegs] = await Promise.all([
@@ -41,16 +46,7 @@ function renderCalendar() {
   const month = currentDate.getMonth();
 
   monthYearHeader.textContent = `${monthNames[month]} ${year}`;
-
   grid.innerHTML = "";
-
-  const dayHeaders = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  dayHeaders.forEach(day => {
-    const headerCell = document.createElement("div");
-    headerCell.className = "calendar-day-header";
-    headerCell.textContent = day;
-    grid.appendChild(headerCell);
-  });
 
   const firstDay = new Date(year, month, 1).getDay();
   const totalDays = new Date(year, month + 1, 0).getDate();
@@ -79,6 +75,9 @@ function renderCalendar() {
     dateHeader.textContent = dayNum;
     cell.appendChild(dateHeader);
 
+    const eventsWrapper = document.createElement("div");
+    eventsWrapper.className = "calendar-events-wrapper";
+
     // Filter events for this day
     const dayEvents = allEvents.filter(ev => {
       const evDate = new Date(ev.starts_at);
@@ -89,8 +88,8 @@ function renderCalendar() {
       const reg = userRegMap.get(ev.id);
       const pill = document.createElement("div");
       pill.className = `calendar-event-pill ${getPillClass(ev.category)}`;
-      pill.title = `${ev.title} (${ev.category})\nVenue: ${ev.venue}`;
-      pill.textContent = `${reg ? '✅ ' : ''}${ev.title}`;
+      pill.title = `${ev.title} (${ev.category})\nTime: ${formatTime(ev.starts_at)}\nVenue: ${ev.venue}`;
+      pill.innerHTML = `<span>${reg ? '✅' : '•'}</span> <span style="overflow:hidden; text-overflow:ellipsis;">${ev.title}</span>`;
 
       pill.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -101,13 +100,14 @@ function renderCalendar() {
         }
       });
 
-      cell.appendChild(pill);
+      eventsWrapper.appendChild(pill);
     });
 
+    cell.appendChild(eventsWrapper);
     grid.appendChild(cell);
   }
 
-  // Next month leading days to complete full grid
+  // Next month leading days to complete 7-column grid
   const currentTotalCells = firstDay + totalDays;
   const remainingCells = (7 - (currentTotalCells % 7)) % 7;
   for (let i = 1; i <= remainingCells; i++) {
