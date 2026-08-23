@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000";
+var API = window.API || "http://127.0.0.1:8000";
 
 function showAttendanceStatus(message, type) {
   const status = document.querySelector("#attendance-status");

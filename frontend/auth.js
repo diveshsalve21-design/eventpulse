@@ -1,4 +1,9 @@
-const API = "http://127.0.0.1:8000";
+window.API = window.EVENTPULSE_API_URL || (
+  window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
+    ? "http://127.0.0.1:8000"
+    : "https://eventpulse-api.onrender.com"
+);
+var API = window.API;
 const AUTH_STORAGE_KEY = "eventpulse_user";
 
 function getCurrentUser() {

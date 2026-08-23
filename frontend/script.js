@@ -1,4 +1,4 @@
-const API = "http://127.0.0.1:8000";
+var API = window.API || "http://127.0.0.1:8000";
 
 const formatDate = (value) => new Date(value).toLocaleString([], { dateStyle: "medium", timeStyle: "short" });
 

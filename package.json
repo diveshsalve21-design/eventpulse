@@ -1,0 +1,12 @@
+{
+  "name": "eventpulse",
+  "version": "1.0.0",
+  "description": "EventPulse - Smart College Event Management System",
+  "scripts": {
+    "dev": "npm --prefix frontend run dev",
+    "start": "npm --prefix frontend start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
