@@ -12,10 +12,10 @@ from app.models.registration import Registration
 from app.models.user import User
 from app.schemas.registration import RegistrationCreate, RegistrationResponse
 
-router = APIRouter(prefix="/events/{event_id}/registrations", tags=["registrations"])
+router = APIRouter(prefix="/events", tags=["registrations"])
 
 
-@router.post("/", response_model=RegistrationResponse, status_code=status.HTTP_201_CREATED)
+@router.post("/{event_id}/registrations/", response_model=RegistrationResponse, status_code=status.HTTP_201_CREATED)
 def register_for_event(event_id: UUID, payload: RegistrationCreate, db: Session = Depends(get_db)):
     event = db.get(Event, event_id)
     student = db.get(User, payload.student_id)
@@ -48,7 +48,17 @@ def register_for_event(event_id: UUID, payload: RegistrationCreate, db: Session 
     return registration
 
 
-@router.delete("/{registration_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.get("/{event_id}/registrations/", response_model=list[RegistrationResponse])
+def get_event_registrations(event_id: UUID, db: Session = Depends(get_db)):
+    return db.query(Registration).filter_by(event_id=event_id).all()
+
+
+@router.get("/student/{student_id}/registrations", response_model=list[RegistrationResponse])
+def get_student_registrations(student_id: UUID, db: Session = Depends(get_db)):
+    return db.query(Registration).filter_by(student_id=student_id).all()
+
+
+@router.delete("/{event_id}/registrations/{registration_id}", status_code=status.HTTP_204_NO_CONTENT)
 def cancel_registration(event_id: UUID, registration_id: UUID, db: Session = Depends(get_db)):
     registration = db.get(Registration, registration_id)
     if not registration or registration.event_id != event_id:

@@ -46,7 +46,7 @@ async function handleAttendanceAction(endpoint) {
 
   try {
     const result = await postAttendance(endpoint, token);
-    showAttendanceStatus("Attendance updated.", "success");
+    showAttendanceStatus("Attendance updated successfully.", "success");
     showAttendanceResult(result);
   } catch (error) {
     showAttendanceStatus(error.message, "error");
@@ -63,4 +63,12 @@ document.querySelector("#qr-token").addEventListener("keydown", (event) => {
     handleAttendanceAction("check-in");
   }
 });
+
+const urlParams = new URLSearchParams(window.location.search);
+const tokenParam = urlParams.get("token");
+if (tokenParam) {
+  const input = document.querySelector("#qr-token");
+  if (input) input.value = tokenParam;
+}
+
 initAuthUi();
