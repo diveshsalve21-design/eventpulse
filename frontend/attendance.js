@@ -54,15 +54,21 @@ async function handleAttendanceAction(endpoint) {
   }
 }
 
-document.querySelector("#check-in").addEventListener("click", () => handleAttendanceAction("check-in"));
-document.querySelector("#check-out").addEventListener("click", () => handleAttendanceAction("check-out"));
+const checkInBtn = document.querySelector("#check-in");
+if (checkInBtn) checkInBtn.addEventListener("click", () => handleAttendanceAction("check-in"));
 
-document.querySelector("#qr-token").addEventListener("keydown", (event) => {
-  if (event.key === "Enter") {
-    event.preventDefault();
-    handleAttendanceAction("check-in");
-  }
-});
+const checkOutBtn = document.querySelector("#check-out");
+if (checkOutBtn) checkOutBtn.addEventListener("click", () => handleAttendanceAction("check-out"));
+
+const qrInput = document.querySelector("#qr-token");
+if (qrInput) {
+  qrInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      handleAttendanceAction("check-in");
+    }
+  });
+}
 
 const urlParams = new URLSearchParams(window.location.search);
 const tokenParam = urlParams.get("token");

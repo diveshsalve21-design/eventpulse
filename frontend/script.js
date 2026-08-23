@@ -66,6 +66,7 @@ async function loadDashboard() {
   }).join("");
 }
 
-document.querySelector("#refresh").addEventListener("click", loadDashboard);
+const refreshBtn = document.querySelector("#refresh");
+if (refreshBtn) refreshBtn.addEventListener("click", loadDashboard);
 initAuthUi();
 loadDashboard().catch(() => { document.querySelector("#events").innerHTML = '<p class="empty">Start the FastAPI server to load live EventPulse data.</p>'; });

@@ -290,10 +290,28 @@ async function seedSampleEvents() {
   }
 }
 
-document.querySelector("#refresh").addEventListener("click", () => loadEvents(document.querySelector("#category").value));
-document.querySelector("#filter").addEventListener("click", () => loadEvents(document.querySelector("#category").value));
-document.querySelector("#seed-samples").addEventListener("click", seedSampleEvents);
-document.querySelector("#event-form").addEventListener("submit", handleCreate);
+const refreshBtn = document.querySelector("#refresh");
+if (refreshBtn) refreshBtn.addEventListener("click", () => loadEvents(document.querySelector("#category")?.value || ""));
+
+const filterBtn = document.querySelector("#filter");
+if (filterBtn) filterBtn.addEventListener("click", () => loadEvents(document.querySelector("#category")?.value || ""));
+
+const categoryInput = document.querySelector("#category");
+if (categoryInput) {
+  categoryInput.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      loadEvents(categoryInput.value);
+    }
+  });
+}
+
+const seedBtn = document.querySelector("#seed-samples");
+if (seedBtn) seedBtn.addEventListener("click", seedSampleEvents);
+
+const eventForm = document.querySelector("#event-form");
+if (eventForm) eventForm.addEventListener("submit", handleCreate);
+
 setupDatePickers();
 populateOrganizers();
 initAuthUi();

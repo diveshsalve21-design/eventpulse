@@ -17,6 +17,7 @@ async function loadUsers() {
   `).join("");
 }
 
-document.querySelector("#refresh").addEventListener("click", loadUsers);
+const refreshBtn = document.querySelector("#refresh");
+if (refreshBtn) refreshBtn.addEventListener("click", loadUsers);
 initAuthUi();
 loadUsers().catch(() => { document.querySelector("#users").innerHTML = '<p class="empty">Start the FastAPI server to load users.</p>'; });
