@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventPulse | Users</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">CAMPUS EXPERIENCE PLATFORM</p>
+        <h1>EventPulse</h1>
+        <p>See the student and organizer accounts currently registered in the system.</p>
+        <nav class="nav-links">
+          <a href="index.html">Dashboard</a>
+          <a href="events.html">Events</a>
+          <a href="users.html" class="active">Users</a>
+          <a href="attendance.html">Attendance</a>
+          <div class="user-badge" id="user-badge" style="display:none;"></div>
+          <a href="login.html" id="login-link" class="btn-login" style="display:none;">Sign in</a>
+        </nav>
+      </header>
+      <section class="toolbar">
+        <div>
+          <h2>Users</h2>
+          <p class="description">Browse campus accounts ordered by name.</p>
+        </div>
+        <button id="refresh">Refresh</button>
+      </section>
+      <section class="users" id="users"><p class="empty">Loading users…</p></section>
+    </main>
+    <script src="auth.js"></script>
+    <script src="users.js"></script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventPulse | Attendance</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">CAMPUS EXPERIENCE PLATFORM</p>
+        <h1>EventPulse</h1>
+        <p>Mark student attendance with QR tokens and review the latest check-ins.</p>
+        <nav class="nav-links">
+          <a href="index.html">Dashboard</a>
+          <a href="events.html">Events</a>
+          <a href="users.html">Users</a>
+          <a href="attendance.html" class="active">Attendance</a>
+          <div class="user-badge" id="user-badge" style="display:none;"></div>
+          <a href="login.html" id="login-link" class="btn-login" style="display:none;">Sign in</a>
+        </nav>
+      </header>
+      <section class="attendance-panel">
+        <h3>Check in / Check out</h3>
+        <form id="attendance-form">
+          <label>
+            <span>QR token</span>
+            <input id="qr-token" type="text" required placeholder="Paste student QR token" />
+          </label>
+          <div class="form-actions">
+            <button type="button" id="check-in">Check in</button>
+            <button type="button" id="check-out">Check out</button>
+            <span class="form-status" id="attendance-status"></span>
+          </div>
+        </form>
+        <div class="attendance-result" id="attendance-result"></div>
+      </section>
+      <section class="events" id="attendance-log"><p class="empty">Use the check-in and check-out buttons to see attendance details.</p></section>
+    </main>
+    <script src="auth.js"></script>
+    <script src="attendance.js"></script>
+  </body>
+</html>
