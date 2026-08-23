@@ -275,17 +275,15 @@ async function getOrganizerId() {
 
 async function seedSampleEvents() {
   const status = document.querySelector("#form-status");
-  status.textContent = "Seeding sample events…";
+  status.textContent = "Seeding sample events & students…";
   status.className = "form-status";
   try {
-    const organizerId = await getOrganizerId();
-    const payloads = createSamplePayloads(organizerId);
-    for (const payload of payloads) {
-      await createEvent(payload);
-    }
-    status.textContent = "Sample events created successfully.";
+    const res = await fetch(`${API}/dashboard/seed-demo-data`, { method: "POST" });
+    if (!res.ok) throw new Error("Failed to seed demo data.");
+    status.textContent = "Sample events & students seeded successfully.";
     status.className = "form-status success";
-    loadEvents(document.querySelector("#category").value);
+    loadEvents(document.querySelector("#category") ? document.querySelector("#category").value : "");
+    if (typeof loadDashboard === "function") loadDashboard();
   } catch (error) {
     status.textContent = error.message;
     status.className = "form-status error";
