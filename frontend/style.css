@@ -72,8 +72,29 @@ input::placeholder, textarea::placeholder { color: #7e76a5; }
 .ticket-qr-section { background: #100d1d; border: 1px solid #342d50; border-radius: 16px; padding: 20px; text-align: center; margin: 18px 0; }
 .qr-code-box { background: #ffffff; color: #000000; padding: 12px; border-radius: 12px; font-family: monospace; word-break: break-all; font-weight: bold; margin: 12px 0; font-size: 0.95rem; border: 2px solid #9d7cff; }
 
+/* Calendar Styles */
+.calendar-container { margin-top: 24px; border: 1px solid #342d50; background: #171228; border-radius: 20px; padding: 24px; }
+.calendar-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; flex-wrap: wrap; gap: 12px; }
+.calendar-header h2 { margin: 0; font-size: 1.6rem; color: #e9e6ff; }
+.calendar-nav { display: flex; gap: 8px; }
+.calendar-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.calendar-day-header { text-align: center; font-weight: bold; color: #bca9ff; padding: 10px 0; font-size: 0.88rem; text-transform: uppercase; border-bottom: 1px solid #342d50; }
+.calendar-cell { min-height: 110px; background: #100d1d; border: 1px solid #282142; border-radius: 12px; padding: 8px; display: flex; flex-direction: column; transition: border-color 0.2s; }
+.calendar-cell:hover { border-color: #564789; }
+.calendar-cell.other-month { opacity: 0.35; background: #0c0a17; }
+.calendar-cell.today { border: 2px solid #9d7cff; background: #1c1533; }
+.calendar-date-number { font-size: 0.85rem; font-weight: bold; color: #bcb5cf; margin-bottom: 6px; }
+.calendar-cell.today .calendar-date-number { color: #9d7cff; }
+.calendar-event-pill { font-size: 0.75rem; padding: 4px 6px; border-radius: 6px; margin-bottom: 4px; color: #ffffff; font-weight: 600; cursor: pointer; text-overflow: ellipsis; overflow: hidden; white-space: nowrap; transition: transform 0.15s; }
+.calendar-event-pill:hover { transform: scale(1.03); opacity: 0.9; }
+.pill-seminar { background: #6366f1; }
+.pill-hackathon { background: #2563eb; }
+.pill-workshop { background: #059669; }
+.pill-webinar { background: #d97706; }
+.pill-default { background: #db2777; }
+
 .tag { color: #d9ceff; font-weight: bold; font-size: .8rem; }
 .empty { color: #bcb5cf; }
 .user-card { padding: 20px; }
-@media (max-width: 850px) { .toolbar { justify-content: stretch; } }
-@media (max-width: 650px) { .stats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 850px) { .toolbar { justify-content: stretch; } .calendar-cell { min-height: 80px; } }
+@media (max-width: 650px) { .stats { grid-template-columns: repeat(2, 1fr); } .calendar-grid { gap: 4px; } }
