@@ -1,7 +1,24 @@
+const DEFAULT_ONLINE_API = "https://lovely-numbers-strive.loca.lt";
+
+const originalFetch = window.fetch;
+window.fetch = function(input, init) {
+  init = init || {};
+  const url = typeof input === "string" ? input : (input && input.url ? input.url : "");
+  if (url && url.includes("loca.lt")) {
+    init.headers = init.headers || {};
+    if (init.headers instanceof Headers) {
+      init.headers.set("bypass-tunnel-reminder", "true");
+    } else {
+      init.headers["bypass-tunnel-reminder"] = "true";
+    }
+  }
+  return originalFetch.call(this, input, init);
+};
+
 window.API = window.EVENTPULSE_API_URL || localStorage.getItem("EVENTPULSE_API_URL") || (
   window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
     ? "http://127.0.0.1:8000"
-    : window.location.origin
+    : (window.location.hostname.includes("github.io") ? DEFAULT_ONLINE_API : window.location.origin)
 );
 var API = window.API;
 
