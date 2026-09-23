@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String, Text
+from sqlalchemy import DateTime, ForeignKey, Integer, String, Text, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -22,7 +22,7 @@ class Event(Base):
     registration_deadline: Mapped[datetime] = mapped_column(DateTime(timezone=True), nullable=False)
     capacity: Mapped[int] = mapped_column(Integer, nullable=False)
     certificate_minimum_minutes: Mapped[int] = mapped_column(Integer, default=45, nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default="now()")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     organizer = relationship("User", back_populates="events")
     registrations = relationship("Registration", back_populates="event", cascade="all, delete-orphan")

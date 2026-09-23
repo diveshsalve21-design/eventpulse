@@ -20,3 +20,7 @@ __pycache__/
 *.swp
 .DS_Store
 Thumbs.db
+
+.vercel
+*.db
+eventpulse.db

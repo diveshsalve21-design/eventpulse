@@ -1,16 +1,22 @@
 import secrets
 from datetime import datetime, timedelta, timezone
-from app.database import SessionLocal, engine
-from app.models.user import User
+from app.database import Base, SessionLocal, engine
 from app.models.event import Event
 from app.models.registration import Registration
+from app.models.user import User
 from sqlalchemy import text
 
 def seed_database():
+    Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     try:
         print("Cleaning up old data...")
-        db.execute(text("TRUNCATE TABLE registrations, events, users CASCADE;"))
+        if engine.dialect.name == "postgresql":
+            db.execute(text("TRUNCATE TABLE registrations, events, users CASCADE;"))
+        else:
+            db.execute(text("DELETE FROM registrations;"))
+            db.execute(text("DELETE FROM events;"))
+            db.execute(text("DELETE FROM users;"))
         db.commit()
 
         print("Creating organizer user...")

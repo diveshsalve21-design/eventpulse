@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, ForeignKey, Integer, String, UniqueConstraint
+from sqlalchemy import DateTime, ForeignKey, Integer, String, UniqueConstraint, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -20,7 +20,7 @@ class Registration(Base):
     qr_token: Mapped[str] = mapped_column(String(64), unique=True, nullable=False)
     checked_in_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     check_out_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default="now()")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     event = relationship("Event", back_populates="registrations")
     student = relationship("User", back_populates="registrations")

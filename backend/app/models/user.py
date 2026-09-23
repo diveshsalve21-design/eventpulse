@@ -1,7 +1,7 @@
 import uuid
 from datetime import datetime
 
-from sqlalchemy import DateTime, String
+from sqlalchemy import DateTime, String, func
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -16,7 +16,7 @@ class User(Base):
     email: Mapped[str] = mapped_column(String(150), unique=True, nullable=False, index=True)
     department: Mapped[str | None] = mapped_column(String(100))
     role: Mapped[str] = mapped_column(String(20), default="student", nullable=False)
-    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default="now()")
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
     events = relationship("Event", back_populates="organizer")
     registrations = relationship("Registration", back_populates="student", cascade="all, delete-orphan")
