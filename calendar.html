@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventPulse | Calendar</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">CAMPUS EXPERIENCE PLATFORM</p>
+        <h1>EventPulse</h1>
+        <p>Interactive calendar view of upcoming campus events, workshops, and hackathons.</p>
+        <nav class="nav-links">
+          <a href="index.html">Dashboard</a>
+          <a href="events.html">Events</a>
+          <a href="calendar.html" class="active">Calendar</a>
+          <a href="users.html">Users</a>
+          <a href="attendance.html">Attendance</a>
+          <div class="user-badge" id="user-badge" style="display:none;"></div>
+          <a href="login.html" id="login-link" class="btn-login" style="display:none;">Sign in</a>
+        </nav>
+      </header>
+      
+      <section class="calendar-container">
+        <div class="calendar-header">
+          <h2 id="calendar-month-year">Loading Calendar…</h2>
+          <div class="calendar-legend">
+            <span class="legend-item"><span class="legend-dot pill-seminar"></span> Seminar</span>
+            <span class="legend-item"><span class="legend-dot pill-hackathon"></span> Hackathon</span>
+            <span class="legend-item"><span class="legend-dot pill-workshop"></span> Workshop</span>
+            <span class="legend-item"><span class="legend-dot pill-webinar"></span> Webinar</span>
+          </div>
+          <div class="calendar-nav">
+            <button id="prev-month" class="btn-secondary">◀ Prev</button>
+            <button id="today-month" class="btn-secondary">Today</button>
+            <button id="next-month" class="btn-secondary">Next ▶</button>
+          </div>
+        </div>
+
+        <div class="calendar-week-header">
+          <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+        </div>
+
+        <div class="calendar-grid" id="calendar-grid">
+          <p class="empty">Loading events on calendar…</p>
+        </div>
+      </section>
+    </main>
+    <script src="auth.js"></script>
+    <script src="calendar.js"></script>
+  </body>
+</html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventPulse | Campus Events</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">CAMPUS EXPERIENCE PLATFORM</p>
+        <h1>EventPulse</h1>
+        <p>Discover events, avoid timetable clashes, and earn attendance-based certificates.</p>
+        <nav class="nav-links">
+          <a href="index.html" class="active">Dashboard</a>
+          <a href="events.html">Events</a>
+          <a href="calendar.html">Calendar</a>
+          <a href="users.html">Users</a>
+          <a href="attendance.html">Attendance</a>
+          <div class="user-badge" id="user-badge" style="display:none;"></div>
+          <a href="login.html" id="login-link" class="btn-login" style="display:none;">Sign in</a>
+        </nav>
+      </header>
+      <section class="stats" id="stats"><article><span>Events</span><strong>—</strong></article><article><span>Registrations</span><strong>—</strong></article><article><span>Waitlist</span><strong>—</strong></article><article><span>Checked in</span><strong>—</strong></article></section>
+      <section class="toolbar"><h2>Upcoming events</h2><button id="refresh">Refresh</button></section>
+      <section class="events" id="events"><p class="empty">Loading events…</p></section>
+    </main>
+    <script src="auth.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

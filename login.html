@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventPulse | Login</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="auth-page">
+      <section class="auth-panel">
+        <nav class="nav-links" style="margin-bottom: 20px;">
+          <a href="index.html">← Back to Dashboard</a>
+        </nav>
+        <header>
+          <p class="eyebrow">CAMPUS EXPERIENCE PLATFORM</p>
+          <h1>Welcome back</h1>
+          <p class="description">Sign in with your campus email to manage events, registrations, and attendance.</p>
+        </header>
+
+        <form id="login-form" class="auth-form">
+          <label>
+            <span>Email</span>
+            <input id="email" type="email" required placeholder="name@campus.edu" />
+          </label>
+
+          <label>
+            <span>Name</span>
+            <input id="name" type="text" placeholder="Full name for new accounts" />
+          </label>
+
+          <div class="form-actions">
+            <button type="submit">Continue</button>
+            <span class="form-status" id="login-status"></span>
+          </div>
+        </form>
+
+        <p class="auth-note">If this email is already registered, you'll be signed in. Otherwise, a student account will be created automatically.</p>
+      </section>
+    </main>
+    <script src="auth.js"></script>
+    <script src="login.js"></script>
+  </body>
+</html>

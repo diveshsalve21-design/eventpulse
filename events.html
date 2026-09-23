@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EventPulse | Events</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header>
+        <p class="eyebrow">CAMPUS EXPERIENCE PLATFORM</p>
+        <h1>EventPulse</h1>
+        <p>Browse all upcoming events and see how many confirmed and waitlisted seats are available.</p>
+        <nav class="nav-links">
+          <a href="index.html">Dashboard</a>
+          <a href="events.html" class="active">Events</a>
+          <a href="calendar.html">Calendar</a>
+          <a href="users.html">Users</a>
+          <a href="attendance.html">Attendance</a>
+          <div class="user-badge" id="user-badge" style="display:none;"></div>
+          <a href="login.html" id="login-link" class="btn-login" style="display:none;">Sign in</a>
+        </nav>
+      </header>
+      <section class="toolbar">
+        <div>
+          <h2>Events</h2>
+          <p class="description">Filter by category or refresh the event list.</p>
+        </div>
+        <div class="toolbar-actions">
+          <input id="category" placeholder="Category filter" />
+          <button id="filter">Filter</button>
+          <button id="refresh">Refresh</button>
+          <button id="seed-samples">Seed sample events</button>
+        </div>
+      </section>
+      <section class="event-form-section">
+        <h3>Create a new event</h3>
+        <form id="event-form">
+          <div class="form-grid">
+            <label><span>Organizer</span><select id="organizer_id" required><option value="">Loading organizers…</option></select></label>
+            <label><span>Title</span><input id="title" required placeholder="Event title" /></label>
+            <label><span>Category</span><input id="category_input" required placeholder="Category" /></label>
+            <label><span>Venue</span><input id="venue" required placeholder="Venue" /></label>
+            <label><span>Starts on</span><input id="starts_at" type="date" required /></label>
+            <label><span>Ends on</span><input id="ends_at" type="date" required /></label>
+            <label><span>Registration deadline</span><input id="registration_deadline" type="date" required /></label>
+            <label><span>Capacity</span><input id="capacity" type="number" min="5" max="2000" value="50" required /></label>
+            <label><span>Certificate min minutes</span><input id="certificate_minimum_minutes" type="number" min="0" value="45" required /></label>
+          </div>
+          <label class="wide"><span>Description</span><textarea id="description" rows="4" required placeholder="Event description"></textarea></label>
+          <div class="form-actions">
+            <button type="submit">Create event</button>
+            <button type="button" id="autofill-event" class="btn-secondary">✨ Auto-fill Example</button>
+            <span class="form-status" id="form-status"></span>
+          </div>
+        </form>
+      </section>
+      <section class="events" id="events"><p class="empty">Loading events…</p></section>
+    </main>
+    <script src="auth.js"></script>
+    <script src="events.js"></script>
+  </body>
+</html>
